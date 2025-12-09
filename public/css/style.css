@@ -1,6 +1,24 @@
+html{
+    --base-col: rgb(1, 79, 1);
+    --secondary: white;
+    --background-img: url('../images/quicktick-bg.jpg');
+
+    color: var(--secondary);
+    background-color: var(--base-col);
+    background-image: var(--background-img);
+}
+
+html.dark{
+    --base-col: rgb(1, 79, 1);
+    --secondary: black;
+    --third: white;
+    --project-bg: rgb(18,28,59);
+    --background-img: url('../images/quicktick-bg.jpg');
+}
+
 .login-container {
+    margin-top: 144px;
     width: 400px;
-    margin-top: 50px;
     text-align: center;
 }
 
@@ -8,6 +26,102 @@ p {
     margin: 10px 0 !important;
 }
 
-.body-container {
-    min-height: 100vh;
+.card{
+    border-radius: 15px;
+}
+
+body > nav.grey.darken-3{
+    background-color: var(--secondary) !important;
+    border-bottom: 3px solid var(--third);
+}
+
+#mobile-demo{
+    background-color: var(--secondary);
+    border-right: 3px solid var(--third);
+}
+
+#mobile-demo > li a{
+    color: var(--third);
+}
+
+.body-container{
+    justify-items: center !important;
+
+}
+
+#projects-text{
+	margin-bottom: 2.2%;
+}
+
+#projects-container{
+	display: flex;
+	height: 66vh;
+	width: 85vw;
+}
+
+#square, #rectangle{
+	width: 50%;
+	height: 100%;
+	
+}
+
+#rectangle {
+	display: flex;
+}
+
+#square {
+	display: flex;
+	flex-direction: column;
+}
+
+#project2, #project3 {
+	flex: 1;
+	border: solid 3px white;
+	margin-left: 0.4vw;
+}
+
+#project1 {
+	flex: 1;
+	border: solid 3px white;
+	box-sizing: border-box;
+	margin-right: 0.4vw;
+}
+
+#project2 {
+	margin-bottom: 0.6vh;
+	background-image: url('images/starWarsImg.jpg');
+	background-size: cover;
+	background-position: center;
+
+}
+
+#project3 {
+	margin-top: 0.6vh;
+	background-image: url('images/as.gif');
+	background-size: cover;
+	background-position: center;
+}
+
+.projects{
+	border-radius: 15px;
+	align-content: center;		
+	background-color: var(--project-bg);		
+	color: var(--third);
+}
+
+.completed{
+    text-decoration: line-through;
+    color: gray;
+}
+.not{
+    text-decoration: underline;
+}
+
+h1 {
+	color: var(--secondary);
+}
+
+h1.h1-dark {
+	color: var(--third);
+	justify-self: normal !important;
 }

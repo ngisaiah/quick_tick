@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
+const todosController = require('../controllers/todos') 
 
 //GET '/'
 router.get('/', ensureGuest, (req,res)=>{
@@ -10,7 +11,7 @@ router.get('/', ensureGuest, (req,res)=>{
 })
 
 //GET '/dashboard'
-router.get('/dashboard', ensureAuth,(req,res)=>{
+router.get('/dashboard', todosController.getTodos, ensureAuth,(req,res)=>{
     res.render('dashboard')
 })
 

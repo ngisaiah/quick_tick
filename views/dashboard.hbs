@@ -1,1 +1,37 @@
-<h1>Dashy</h1>
+<h1 class='h1-dark'>Welcome, {{user}}!</h1>
+
+<section id='projects-container'>
+
+		<section id='rectangle'>
+			<div class="projects" id='project1'></div>
+		</section>
+
+		<section id='square'>
+			<div class="projects" id='project2'>
+									
+									
+			</div>
+			<div class="projects" id='project3'>
+                <h2>Notes</h2>
+                <ul>
+                    {{#each todo}}
+                        <li class="todoItem" data-id="{{this}}">
+                            {{!-- <span class="{{#if Todo.completed}}completed{{else}}not{{/if}}">
+                                {{todo}}
+                            </span> --}}
+                            <span>{{this}}</span>
+                            <i class="fa-regular fa-trash-can del"></i>
+                        </li>
+                    {{/each}}   
+                </ul>
+
+                <h6>{{user}} has {{left}} things left to do.</h6>
+
+                <form action="/dashboard/createTodo" method='POST'>
+                    <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+                    <input type="submit">
+                </form>
+			</div>
+		</section>
+	
+	</section>

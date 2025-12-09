@@ -19,7 +19,7 @@ connectDB()
 const app = express()
 
 // Body parser
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 // Handlebars
@@ -48,8 +48,9 @@ app.use(passport.session())
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Routes
-app.use('/', require('./routes/index'))
+app.use('/', require('./routes/index'), require('./routes/todos'))
 app.use('/auth', require('./routes/auth'))
+app.use('/dashboard', require('./routes/todos'))
 
 const PORT = process.env.PORT || 5000
 
