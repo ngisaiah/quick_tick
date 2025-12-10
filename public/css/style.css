@@ -125,3 +125,9 @@ h1.h1-dark {
 	color: var(--third);
 	justify-self: normal !important;
 }
+
+
+
+.crypto-table, #project1{
+	overflow: scroll;
+}

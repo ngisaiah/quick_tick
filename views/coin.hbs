@@ -1,0 +1,46 @@
+<h1 class='h1-dark'>Coins!</h1>
+
+<section id='projects-container'>
+
+		<section id='rectangle'>
+			<div class="projects" id='project1'>
+                <table class='crypto-table'>
+                    <tbody>
+                        <tr>
+                            <th>Favorite</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>1h %</th>
+                            <th>24h %</th>
+                            <th>7d %</th>
+                            <th>Market Cap</th>
+                            <th>Volume(24h)</th>
+                        </tr>
+                        {{#each coin}}
+                            <tr class="cmc-coin" data-id="{{this}}">
+                                {{!-- <span class="{{#if Todo.completed}}completed{{else}}not{{/if}}">
+                                    {{todo}}
+                                </span> --}}
+                                <td><i class="fa-regular fa-star"></i></td>
+                                <td>{{this}}</td>
+                                <td>{{lookup ../price @index}}</td>
+                                <td>{{lookup ../hr1 @index}}</td>
+                                <td>{{lookup ../hr24 @index}}</td>
+                                <td>{{lookup ../day7 @index}}</td>
+                                <td>{{lookup ../market_cap @index}}</td>
+                                <td>{{lookup ../volume @index}}</td>
+                            </tr>
+                        {{/each}}
+                    </tbody>   
+                </table>
+            </div>
+		</section>
+
+		<section id='square'>
+			<div class="projects" id='project2'>
+									
+									
+			</div>
+		</section>
+	
+	</section>
