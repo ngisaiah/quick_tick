@@ -5,6 +5,7 @@ const User = require('../models/User')
 module.exports = {
     getTodos: async (req,res)=>{
         try{
+            console.log('todo')
             //Returns user making the req
             const user = await User.findById(req.user)
             //Returns all todos by requesting user
@@ -32,6 +33,16 @@ module.exports = {
             await Todo.findOneAndDelete(req.body.todoIdFromJSFile)
             console.log('Todo Deleted!')
             res.json('Deleted It')
+        }catch(err){
+            console.log(err)
+        }
+    },
+    getCmc: async (req,res)=>{
+        try{
+            await console.log('f2')
+            const url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest` 
+
+            //res.render('dashboard',{todo: itemString, left: itemsLeft, user: user.firstName,})
         }catch(err){
             console.log(err)
         }

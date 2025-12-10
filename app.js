@@ -48,9 +48,10 @@ app.use(passport.session())
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Routes
-app.use('/', require('./routes/index'), require('./routes/todos'))
+app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
-app.use('/dashboard', require('./routes/todos'))
+app.use('/dashboard', require('./routes/todos'), require('./routes/coins'))
+
 
 const PORT = process.env.PORT || 5000
 
