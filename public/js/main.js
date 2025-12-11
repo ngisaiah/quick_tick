@@ -1,10 +1,30 @@
 const deleteBtn = document.querySelectorAll('.del')
+const favIcon = document.querySelectorAll('.fav-icon')
+const favoritesBody = document.querySelector("table.favorites-table tbody");
 // const todoItem = document.querySelectorAll('span.not')
 // const todoComplete = document.querySelectorAll('span.completed')
 
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteTodo)
 })
+
+
+// Array.from(favIcon).forEach((el)=>{
+//     el.addEventListener('click', addFavorite)
+// })
+
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("fav-icon")) {
+        const row = e.target.closest("tr");
+
+        // Toggle the star
+        e.target.classList.toggle("fa-solid");
+        e.target.classList.toggle("fa-regular");
+
+        // Move row to favorites
+        favoritesBody.appendChild(row);
+    }
+});
 
 // Array.from(todoItem).forEach((el)=>{
 //     el.addEventListener('click', markComplete)
@@ -31,6 +51,7 @@ async function deleteTodo(){
         console.log(err)
     }
 }
+
 
 // async function markComplete(){
 //     const todoId = this.parentNode.dataset.id
