@@ -25,6 +25,9 @@ app.use(express.json())
 // Handlebars
 app.engine('hbs', hbs.engine({
     extname: '.hbs',
+    helpers: {
+        includes: (array, value) => Array.isArray(array) && array.includes(value)
+    },
     defaultLayout: 'main' // default layout file
 }));
 app.set('view engine', 'hbs')
@@ -51,7 +54,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
 app.use('/dashboard', require('./routes/todos'), require('./routes/coins'))
-
+app.use('/coin', require('./routes/coins'))
 
 const PORT = process.env.PORT || 5000
 
