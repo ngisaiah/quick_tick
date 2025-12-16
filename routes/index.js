@@ -12,7 +12,7 @@ router.get('/', ensureGuest, (req,res)=>{
 })
 
 //GET '/dashboard'
-router.get('/dashboard', todosController.getTodos, coinController.getCoins,ensureAuth,(req,res)=>{
+router.get('/dashboard', todosController.getTodos, coinController.getCoins, ensureAuth,(req,res)=>{
     res.render('dashboard')
 })
 

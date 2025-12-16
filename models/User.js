@@ -15,7 +15,10 @@ const UserSchema = new mongoose.Schema({
     },
     lastName: {
         type: String,
-        //required: true
+    },
+    favorites: {
+        type: [String],
+        default: []
     },
     image: {
         type: String,

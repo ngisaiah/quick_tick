@@ -6,64 +6,70 @@
 
                 <section id='rectangle'>
                     <div class="projects" id='project1'>
-                        <table class='crypto-table'>
-                            <tr>
-                                    <th>Favorite</th>
-                                    <th>Name</th>
-                                    <th>Price</th>
-                                    <th>1h %</th>
-                                    <th>24h %</th>
-                                    <th>7d %</th>
-                                    <th>Market Cap</th>
-                                    <th>Volume(24h)</th>
+                        <table class="crypto-table">
+                            <thead>
+                                <tr>
+                                <th>Favorite</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>1h %</th>
+                                <th>24h %</th>
+                                <th>7d %</th>
+                                <th>Market Cap</th>
+                                <th>Volume(24h)</th>
                                 </tr>
+                            </thead>
+
                             <tbody>
-                                {{!-- <tr>
-                                    <th>Favorite</th>
-                                    <th>Name</th>
-                                    <th>Price</th>
-                                    <th>1h %</th>
-                                    <th>24h %</th>
-                                    <th>7d %</th>
-                                    <th>Market Cap</th>
-                                    <th>Volume(24h)</th>
-                                </tr> --}}
                                 {{#each coin}}
-                                    <tr class="cmc-coin" data-id="{{this}}">
-                                        {{!-- <span class="{{#if Todo.completed}}completed{{else}}not{{/if}}">
-                                            {{todo}}
-                                        </span> --}}
-                                        <td><i class="fa-regular fa-star fav-icon"></i></td>
-                                        <td>{{this}}</td>
-                                        <td>{{lookup ../price @index}}</td>
-                                        <td>{{lookup ../hr1 @index}}</td>
-                                        <td>{{lookup ../hr24 @index}}</td>
-                                        <td>{{lookup ../day7 @index}}</td>
-                                        <td>{{lookup ../market_cap @index}}</td>
-                                        <td>{{lookup ../volume @index}}</td>
-                                    </tr>
+                                <tr class="cmc-coin" data-id="{{this}}">
+                                    <td>
+                                    <i class="fa-star fav-icon
+                                        {{#if (includes ../favorites this)}}
+                                        fa-solid
+                                        {{else}}
+                                        fa-regular
+                                        {{/if}}
+                                    "></i>
+                                    </td>
+
+                                    <td>{{this}}</td>
+                                    <td>{{lookup ../price @index}}</td>
+                                    <td>{{lookup ../hr1 @index}}</td>
+                                    <td>{{lookup ../hr24 @index}}</td>
+                                    <td>{{lookup ../day7 @index}}</td>
+                                    <td>{{lookup ../market_cap @index}}</td>
+                                    <td>{{lookup ../volume @index}}</td>
+                                </tr>
                                 {{/each}}
-                            </tbody>   
+                            </tbody>
                         </table>
+
                     </div>
                 </section>
 
                 <section id='square'>
                     <div class="projects favorites" id='project2'>
+                        <p>Favorites from DB: {{favorites}}</p>
                         <table class="favorites-table">
-                            <tbody>
+                            <thead>
                                 <tr>
-                                    <th>Favorite</th>
-                                    <th>Name</th>
-                                    <th>Price</th>
-                                    <th>1h %</th>
-                                    <th>24h %</th>
-                                    <th>7d %</th>
-                                    <th>Market Cap</th>
-                                    <th>Volume(24h)</th>
+                                <th>Favorite</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>1h %</th>
+                                <th>24h %</th>
+                                <th>7d %</th>
+                                <th>Market Cap</th>
+                                <th>Volume(24h)</th>
                                 </tr>
+                            </thead>
+
+                            <tbody>
+                                <!-- rows moved here by JS -->
                             </tbody>
-                        </table>									
+                        </table>
+									
                     </div>
                 </section>
             
