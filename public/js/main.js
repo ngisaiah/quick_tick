@@ -1,17 +1,10 @@
 const deleteBtn = document.querySelectorAll('.del')
 const favIcon = document.querySelectorAll('.fav-icon')
 const favoritesBody = document.querySelector("table.favorites-table tbody");
-// const todoItem = document.querySelectorAll('span.not')
-// const todoComplete = document.querySelectorAll('span.completed')
 
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteTodo)
 })
-
-
-// Array.from(favIcon).forEach((el)=>{
-//     el.addEventListener('click', addFavorite)
-// })
 
 document.addEventListener("click", async (e) => {
     if (!e.target.classList.contains("fav-icon")) return;
@@ -26,13 +19,24 @@ document.addEventListener("click", async (e) => {
     icon.classList.toggle("fa-solid");
     icon.classList.toggle("fa-regular");
 
+    const mainTableBody = document.querySelector(".crypto-table tbody");
+    const favoritesTableBody = document.querySelector(".favorites-table tbody");
+
+    if (isFavorited) {
+        // removing favorite = move back
+        mainTableBody.appendChild(row);
+    } else {
+        // adding favorite = move to favorites
+        favoritesTableBody.appendChild(row);
+    }
+
     // Save to DB
     await fetch("/coin/favorite", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             coinId,
-            favorite: !isFavorited // true = add, false = remove
+            favorite: !isFavorited // true = add & false = remove
         })
     });
 });
@@ -42,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const mainTableBody = document.querySelector(".crypto-table tbody");
     const favoritesTableBody = document.querySelector(".favorites-table tbody");
 
+    // If page doesnt include tables return - remove when tables added to Dashboard
     if (!mainTableBody || !favoritesTableBody) return;
 
     // Find all rows that are already favorited (solid star)
@@ -54,15 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
         favoritesTableBody.appendChild(row);
     });
 });
-
-
-// Array.from(todoItem).forEach((el)=>{
-//     el.addEventListener('click', markComplete)
-// })
-
-// Array.from(todoComplete).forEach((el)=>{
-//     el.addEventListener('click', markIncomplete)
-// })
 
 async function deleteTodo(){
     const todoId = this.parentNode.dataset.id
@@ -81,40 +77,3 @@ async function deleteTodo(){
         console.log(err)
     }
 }
-
-
-// async function markComplete(){
-//     const todoId = this.parentNode.dataset.id
-//     try{
-//         const response = await fetch('dashboard/markComplete', {
-//             method: 'put',
-//             headers: {'Content-type': 'application/json'},
-//             body: JSON.stringify({
-//                 'todoIdFromJSFile': todoId
-//             })
-//         })
-//         const data = await response.json()
-//         console.log(data)
-//         location.reload()
-//     }catch(err){
-//         console.log(err)
-//     }
-// }
-
-// async function markIncomplete(){
-//     const todoId = this.parentNode.dataset.id
-//     try{
-//         const response = await fetch('dashboard/markIncomplete', {
-//             method: 'put',
-//             headers: {'Content-type': 'application/json'},
-//             body: JSON.stringify({
-//                 'todoIdFromJSFile': todoId
-//             })
-//         })
-//         const data = await response.json()
-//         console.log(data)
-//         location.reload()
-//     }catch(err){
-//         console.log(err)
-//     }
-// }

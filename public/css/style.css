@@ -31,8 +31,12 @@ p {
 }
 
 body > nav.grey.darken-3{
-    background-color: var(--secondary) !important;
+    background-color: var(--project-bg) !important;
     border-bottom: 3px solid var(--third);
+}
+
+.sidenav {
+	background-color: var(--project-bg) !important;
 }
 
 #mobile-demo{
@@ -76,13 +80,13 @@ body > nav.grey.darken-3{
 
 #project2, #project3 {
 	flex: 1;
-	border: solid 3px white;
+	border: solid 3px var(--third);
 	margin-left: 0.4vw;
 }
 
 #project1 {
 	flex: 1;
-	border: solid 3px white;
+	border: solid 3px var(--third);
 	box-sizing: border-box;
 	margin-right: 0.4vw;
 }
