@@ -2,15 +2,71 @@
 
 <section id='projects-container'>
 
-		<section id='rectangle'>
-			<div class="projects" id='project1'></div>
-		</section>
+		        <section id='rectangle'>
+                    <div class="projects" id='project1'>
+                        <table class="crypto-table">
+                            <thead>
+                                <tr>
+                                <th>Favorite</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>1h %</th>
+                                <th>24h %</th>
+                                <th>7d %</th>
+                                <th>Market Cap</th>
+                                <th>Volume(24h)</th>
+                                </tr>
+                            </thead>
 
+                            <tbody>
+                                {{#each coin}}
+                                <tr class="cmc-coin" data-id="{{this}}">
+                                    <td>
+                                    <i class="fa-star fav-icon
+                                        {{#if (includes ../favorites this)}}
+                                        fa-solid
+                                        {{else}}
+                                        fa-regular
+                                        {{/if}}
+                                    "></i>
+                                    </td>
+
+                                    <td>{{this}}</td>
+                                    <td>{{lookup ../price @index}}</td>
+                                    <td>{{lookup ../hr1 @index}}</td>
+                                    <td>{{lookup ../hr24 @index}}</td>
+                                    <td>{{lookup ../day7 @index}}</td>
+                                    <td>{{lookup ../market_cap @index}}</td>
+                                    <td>{{lookup ../volume @index}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </section>
 		<section id='square'>
-			<div class="projects" id='project2'>
+			<div class="projects favorites" id='project2'>
+                        <table class="favorites-table">
+                            <thead>
+                                <tr>
+                                <th>Favorite</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>1h %</th>
+                                <th>24h %</th>
+                                <th>7d %</th>
+                                <th>Market Cap</th>
+                                <th>Volume(24h)</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <!-- rows moved here by JS -->
+                            </tbody>
+                        </table>
 									
-									
-			</div>
+                    </div>
 			<div class="projects" id='project3'>
                 <h2>Notes</h2>
                 <ul>
@@ -29,7 +85,7 @@
 
                 <form action="/dashboard/createTodo" method='POST'>
                     <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-                    <input type="submit">
+                    <input type="submit" class='submit-input'>
                 </form>
 			</div>
 		</section>
