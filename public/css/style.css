@@ -53,6 +53,8 @@ body > nav.grey.darken-3{
 
 }
 
+/* Dashboard Coin-tables & Notes */
+
 #projects-text{
 	margin-bottom: 2.2%;
 }
@@ -91,19 +93,12 @@ body > nav.grey.darken-3{
 	margin-right: 0.4vw;
 }
 
-#project2 {
-	margin-bottom: 0.6vh;
-	background-image: url('images/starWarsImg.jpg');
-	background-size: cover;
-	background-position: center;
-
+input {
+    color: var(--third);
 }
 
-#project3 {
-	margin-top: 0.6vh;
-	background-image: url('images/as.gif');
-	background-size: cover;
-	background-position: center;
+.submit-input{
+    color: var(--project-bg);
 }
 
 .projects{
@@ -129,8 +124,6 @@ h1.h1-dark {
 	color: var(--third);
 	justify-self: normal !important;
 }
-
-
 
 .crypto-table, #project1, #project2{
 	overflow: scroll;

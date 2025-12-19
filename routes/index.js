@@ -13,7 +13,20 @@ router.get('/', ensureGuest, (req,res)=>{
 
 //GET '/dashboard'
 router.get('/dashboard', todosController.getTodos, coinController.getCoins, ensureAuth,(req,res)=>{
-    res.render('dashboard')
+    res.render('dashboard', {
+        todo: res.locals.todos,
+        left: res.locals.itemsLeft,
+        user: res.locals.userName,
+
+        coin: res.locals.coin,
+        price: res.locals.price,
+        hr1: res.locals.hr1,
+        hr24: res.locals.hr24,
+        day7: res.locals.day7,
+        market_cap: res.locals.market_cap,
+        volume: res.locals.volume,
+        favorites: res.locals.favorites
+    })
 })
 
 

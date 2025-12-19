@@ -6,10 +6,10 @@ Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteTodo)
 })
 
-document.addEventListener("click", async (e) => {
-    if (!e.target.classList.contains("fav-icon")) return;
+document.addEventListener("click", async (el) => {
+    if (!el.target.classList.contains("fav-icon")) return;
 
-    const icon = e.target;
+    const icon = el.target;
     const row = icon.closest("tr");
     const coinId = row.dataset.id;
 
@@ -31,7 +31,7 @@ document.addEventListener("click", async (e) => {
     }
 
     // Save to DB
-    await fetch("/coin/favorite", {
+    await fetch("/dashboard/favorite", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -50,9 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!mainTableBody || !favoritesTableBody) return;
 
     // Find all rows that are already favorited (solid star)
-    const favoriteRows = mainTableBody.querySelectorAll(
-        "tr .fav-icon.fa-solid"
-    );
+    const favoriteRows = mainTableBody.querySelectorAll("tr .fav-icon.fa-solid");
 
     favoriteRows.forEach(icon => {
         const row = icon.closest("tr");

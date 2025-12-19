@@ -3,7 +3,7 @@ const User = require('../models/User')
 
 
 module.exports = {
-    getTodos: async (req,res)=>{
+    getTodos: async (req,res, next)=>{
         try{
             //Returns user making the req
             const user = await User.findById(req.user)
@@ -11,9 +11,18 @@ module.exports = {
             const todoItems = await Todo.find({googleId: req.user})
             //Counts all documents from reuqesting user
             const itemsLeft = await Todo.find({googleId: req.user}).countDocuments({completed: false})
+            
             //returns array with todos only
             const itemString = await todoItems.map(s => s.todo)
-            res.render('dashboard',{todo: itemString, left: itemsLeft, user: user.firstName,})
+            
+            //res.render('dashboard',{todo: itemString, left: itemsLeft, user: user.firstName,})
+
+            res.locals.todos = itemString    
+            res.locals.itemsLeft = itemsLeft
+            res.locals.userName = user.firstName
+
+            next()
+            
         }catch(err){
             console.log(err)
         }
@@ -38,25 +47,3 @@ module.exports = {
     },
 }    
 
-// markComplete: async (req, res)=>{
-//     try{
-//         await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
-//             completed: true
-//         })
-//         console.log('Marked Complete')
-//         res.json('Marked Complete')
-//     }catch(err){
-//         console.log(err)
-//     }
-// },
-// markIncomplete: async (req, res)=>{
-//     try{
-//         await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
-//             completed: false
-//         })
-//         console.log('Marked Incomplete')
-//         res.json('Marked Incomplete')
-//     }catch(err){
-//         console.log(err)
-//     }
-// },
