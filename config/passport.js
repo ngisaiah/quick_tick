@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const User = require('../models/User')
 
 module.exports = function (passport) {
+  console.log("Using callback:", process.env.GOOGLE_CALLBACK_URL);
   passport.use(
     new GoogleStrategy(
       {
