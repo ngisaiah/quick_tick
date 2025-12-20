@@ -76,8 +76,8 @@ body > nav.grey.darken-3{
 }
 
 #square {
-	display: flex;
-	flex-direction: column;
+	width: 50%;
+	height: 100%;
 }
 
 #project2, #project3 {
@@ -127,4 +127,21 @@ h1.h1-dark {
 
 .crypto-table, #project1, #project2{
 	overflow: scroll;
+}
+
+@media (max-width: 500px) {
+    #projects-container{
+        flex-direction: column-reverse;
+        height: auto;
+    }
+    #square,
+    #rectangle {
+        width: 100%;
+        height: auto;
+    }
+    #project1,
+    #project2,
+    #project3 {
+        margin: 0.5rem 0;
+  }
 }
