@@ -38,12 +38,18 @@ app.set('trust proxy', 1);
 //Session middleware
 app.use(
   session({
-    secret: 'keyboard cat',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({mongoUrl: process.env.MONGO_URI})
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URI
+    }),
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax"
+    }
   })
-)
+);
 
 // Passport middleware
 app.use(passport.initialize())
