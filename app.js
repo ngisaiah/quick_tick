@@ -24,24 +24,32 @@ app.use(express.json())
 
 // Handlebars
 app.engine('hbs', hbs.engine({
-    extname: '.hbs',
-    helpers: {
-        includes: (array, value) => Array.isArray(array) && array.includes(value)
-    },
-    defaultLayout: 'main' // default layout file
+  extname: '.hbs',
+  helpers: {
+    includes: (array, value) => Array.isArray(array) && array.includes(value)
+  },
+  defaultLayout: 'main' // default layout file
 }));
+
 app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, 'views'));
+app.set('trust proxy', 1);
 
 //Session middleware
 app.use(
   session({
-    secret: 'keyboard cat',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({mongoUrl: process.env.MONGO_URI})
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URI
+    }),
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax"
+    }
   })
-)
+);
 
 // Passport middleware
 app.use(passport.initialize())
