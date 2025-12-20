@@ -39,7 +39,14 @@ module.exports = function (passport) {
     done(null, user.id)
   })
 
-  passport.deserializeUser((id, done) => {
-    done(null, id)
-  })
+  passport.deserializeUser(async (id, done) => {
+    try {
+      const user = await User.findById(id);
+      done(null, user);
+    } catch (err) {
+      console.error(err);
+      done(err, null);
+    }
+  });
+
 }

@@ -24,14 +24,16 @@ app.use(express.json())
 
 // Handlebars
 app.engine('hbs', hbs.engine({
-    extname: '.hbs',
-    helpers: {
-        includes: (array, value) => Array.isArray(array) && array.includes(value)
-    },
-    defaultLayout: 'main' // default layout file
+  extname: '.hbs',
+  helpers: {
+    includes: (array, value) => Array.isArray(array) && array.includes(value)
+  },
+  defaultLayout: 'main' // default layout file
 }));
+
 app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, 'views'));
+app.set('trust proxy', 1);
 
 //Session middleware
 app.use(
