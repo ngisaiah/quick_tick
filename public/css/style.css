@@ -202,7 +202,9 @@ nav .brand-logo i, nav .brand-logo [class^="mdi-"], nav .brand-logo [class*="mdi
 
 #project3 > form > input.submit-input {
     border-radius: 15px;
-    background-color: rgb(239,239,239);
+    background-color: var(--project-bg);
+    color: var(--third);
+    border: 3px solid var(--third);
 }
 
 /* Tables scrollable with sticky headers */
