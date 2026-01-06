@@ -10,9 +10,6 @@ html {
     color: var(--secondary);
     background-image: var(--background-img);
     box-sizing: border-box;
-    
-    background-position: center;
-    background-size: cover;
 
 
     transition: background-color 0.6s ease, color 0.3s ease;
@@ -23,9 +20,6 @@ html.dark {
     --third: white;
     --project-bg: rgb(18,28,59);
     --background-img: url('../images/quicktick-bg.jpg');
-
-    background-position: center;
-    background-size: cover;
 
 }
 
@@ -119,6 +113,14 @@ body > nav > div > a.brand-logo.center{
 
 .fa-sun, .fa-moon {
     color: var(--third)
+}
+
+nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
+    height: auto;
+}
+
+nav .brand-logo i, nav .brand-logo [class^="mdi-"], nav .brand-logo [class*="mdi-"], nav .brand-logo i.material-icons{
+    margin-right: 0;
 }
 
 /* Dashboard Layout */
@@ -223,6 +225,14 @@ body > nav > div > a.brand-logo.center{
     .my-dashboard h1.h1-dark {
         text-align: center;
         width: 100%;
+    }
+    .login-container {
+        width: 300px;
+    }
+
+    html{
+        background-position: center;
+        background-size: cover;
     }
 }
 
