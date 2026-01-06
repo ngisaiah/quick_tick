@@ -4,6 +4,7 @@ const request = require('request')
 module.exports = {
     getCoins: (req,res,next)=>{
         try{
+            // API request 
             const url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest` 
 
             request.get({
@@ -17,7 +18,8 @@ module.exports = {
                 try {
                     const user = await User.findById(req.user)
                     const coins = data.data
-
+                    
+                    //store response local variables only available during reqs
                     res.locals.coin = await coins.map(el => el.name)
                     res.locals.price = await coins.map(el => '$'+Number(el.quote.USD.price).toLocaleString('en-US',{minimumFractionDigits: 2,maximumFractionDigits: 2}))
                     res.locals.volume = await coins.map(el => '$'+Number(el.quote.USD.volume_24h).toLocaleString('en-US',{minimumFractionDigits: 2,maximumFractionDigits: 2}))
@@ -50,12 +52,12 @@ module.exports = {
                 }
     
                 if (favorite) {
-                    // ADD
+                    // add coin to fav
                     if (!user.favorites.includes(coinId)) {
                         user.favorites.push(coinId);
                     }
                 } else {
-                    // REMOVE
+                    // remove coin from favs
                     user.favorites = user.favorites.filter(id => id !== coinId);
                 }
     

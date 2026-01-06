@@ -1,20 +1,83 @@
-html{
-    --base-col: rgb(1, 79, 1);
-    --secondary: white;
-    --background-img: url('../images/quicktick-bg.jpg');
+/* Global Styles / Dark mode */
 
+html {
+    --secondary: black;
+    --third: rgb(18,28,59);
+    --project-bg: white;
+    --background-img: url('../images/quicktick-bg-light.jpg');
+
+    
     color: var(--secondary);
-    background-color: var(--base-col);
     background-image: var(--background-img);
+    box-sizing: border-box;
+    
+    background-position: center;
+    background-size: cover;
+
+
+    transition: background-color 0.6s ease, color 0.3s ease;
 }
 
-html.dark{
-    --base-col: rgb(1, 79, 1);
+html.dark {
     --secondary: black;
     --third: white;
     --project-bg: rgb(18,28,59);
     --background-img: url('../images/quicktick-bg.jpg');
+
+    background-position: center;
+    background-size: cover;
+
 }
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Light/Dark Mode */
+
+#theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--secondary);
+}
+
+#theme-toggle:focus {
+    outline: none;
+}
+
+.nav-wrapper.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* pushes logo left, toggle right */
+    position: relative;
+}
+
+/* Center the logo while keeping toggle on the right */
+.brand-logo.center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+}
+
+/* Theme toggle button styling */
+#theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--secondary);
+}
+
+/* Login Page */
 
 .login-container {
     margin-top: 144px;
@@ -22,126 +85,145 @@ html.dark{
     text-align: center;
 }
 
-p {
-    margin: 10px 0 !important;
-}
-
-.card{
+.card {
     border-radius: 15px;
 }
 
-body > nav.grey.darken-3{
+.card h1, .fa-chart-line {
+    color: var(--secondary);
+}
+
+/* Nav & Side-Nav */
+
+nav.grey.darken-3{
     background-color: var(--project-bg) !important;
     border-bottom: 3px solid var(--third);
 }
 
-.sidenav {
-	background-color: var(--project-bg) !important;
+#mobile-demo {
+    background-color: var(--project-bg);
 }
 
-#mobile-demo{
-    background-color: var(--secondary);
-    border-right: 3px solid var(--third);
-}
-
-#mobile-demo > li a{
+body > nav > div > a.brand-logo.center{
     color: var(--third);
 }
 
-.body-container{
-    justify-items: center !important;
-
+.sidenav li>a, nav .sidenav-trigger i{
+    color: var(--third);
 }
 
-/* Dashboard Coin-tables & Notes */
-
-#projects-text{
-	margin-bottom: 2.2%;
+.nav-wrapper button {
+    border: none;
+    background-color: transparent;
 }
 
-#projects-container{
-	display: flex;
-	height: 66vh;
-	width: 85vw;
+.fa-sun, .fa-moon {
+    color: var(--third)
 }
 
-#square, #rectangle{
-	width: 50%;
-	height: 100%;
-	
+/* Dashboard Layout */
+
+.my-dashboard {
+    display: flex;
+    flex-direction: column;       
+    align-items: center;          
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
-#rectangle {
-	display: flex;
+.my-dashboard h1.h1-dark {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--third);
 }
 
+/* Projects container */
+#projects-container {
+    display: flex;
+    flex-wrap: wrap;             
+    justify-content: center;     
+    width: 100%;
+    max-width: 1200px;            
+    gap: 1rem;
+    box-sizing: border-box;
+}
+
+/* Left and right columns */
+#rectangle,
 #square {
-	width: 50%;
-	height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 45%; 
+    min-width: 300px;   
+    box-sizing: border-box;
 }
 
-#project2, #project3 {
-	flex: 1;
-	border: solid 3px var(--third);
-	margin-left: 0.4vw;
-}
-
-#project1 {
-	flex: 1;
-	border: solid 3px var(--third);
-	box-sizing: border-box;
-	margin-right: 0.4vw;
-}
-
-input {
+/* Individual projects inside columns */
+#project1,
+#project2,
+#project3 {
+    flex: 1;
+    box-sizing: border-box;
+    border: 3px solid var(--third);
+    overflow: auto;
+    border-radius: 15px;
+    padding: 0.5rem;
+    background-color: var(--project-bg);
     color: var(--third);
+    margin-bottom: 0.5rem;
+    max-height: 66vh;
 }
 
-.submit-input{
-    color: var(--project-bg);
+/* Notes Layout */
+
+#project3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 100%;         
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
-.projects{
-	border-radius: 15px;
-	align-content: center;		
-	background-color: var(--project-bg);		
-	color: var(--third);
+#project3 h3{
+    font-size: 2rem;
+    padding-top: 0;
 }
 
-.completed{
-    text-decoration: line-through;
-    color: gray;
-}
-.not{
-    text-decoration: underline;
-}
-
-h1 {
-	color: var(--secondary);
+/* Tables scrollable with sticky headers */
+.crypto-table,
+.favorites-table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-h1.h1-dark {
-	color: var(--third);
-	justify-self: normal !important;
+.crypto-table thead th,
+.favorites-table thead th {
+    position: sticky;
+    top: 0;
+    background-color: var(--project-bg);
+    z-index: 2;
 }
 
-.crypto-table, #project1, #project2{
-	overflow: scroll;
-}
 
-@media (max-width: 500px) {
-    #projects-container{
-        flex-direction: column-reverse;
-        height: auto;
+/* Mobile Responsive */
+@media (max-width: 755px) {
+
+    /* Reverse top-level sections */
+    #projects-container > #square {
+        order: -1 !important;  /* comes first */
     }
-    #square,
-    #rectangle {
+    #projects-container > #rectangle {
+        order: 0 !important;   /* comes second */
+    }
+
+    /* Center heading */
+    .my-dashboard h1.h1-dark {
+        text-align: center;
         width: 100%;
-        height: auto;
     }
-    #project1,
-    #project2,
-    #project3 {
-        margin: 0.5rem 0;
-  }
 }
+
+

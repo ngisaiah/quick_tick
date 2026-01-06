@@ -75,3 +75,31 @@ async function deleteTodo(){
         console.log(err)
     }
 }
+
+// light / dark mode toggle
+
+const themeToggle = document.getElementById("theme-toggle");
+const themeIcon = document.getElementById("theme-icon");
+
+function applyTheme(theme) {
+    if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+        themeIcon.classList.remove("fa-moon");
+        themeIcon.classList.add("fa-sun");
+    } else {
+        document.documentElement.classList.remove("dark");
+        themeIcon.classList.remove("fa-sun");
+        themeIcon.classList.add("fa-moon");
+    }
+}
+
+// Apply default on page load
+let currentTheme = localStorage.getItem("theme") || "dark"; // default dark
+applyTheme(currentTheme);
+
+// Toggle button click
+themeToggle.addEventListener("click", () => {
+    currentTheme = currentTheme === "dark" ? "light" : "dark";
+    applyTheme(currentTheme);
+    localStorage.setItem("theme", currentTheme);
+});
