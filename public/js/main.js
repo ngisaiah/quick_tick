@@ -42,6 +42,10 @@ document.addEventListener("click", async (el) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+    const sidenavElement = document.getElementById("mobile-demo");
+    if (sidenavElement && window.M && M.Sidenav) {
+        M.Sidenav.init(sidenavElement, { edge: "left" });
+    }
 
     const mainTableBody = document.querySelector(".crypto-table tbody");
     const favoritesTableBody = document.querySelector(".favorites-table tbody");
@@ -84,12 +88,16 @@ const themeIcon = document.getElementById("theme-icon");
 function applyTheme(theme) {
     if (theme === "dark") {
         document.documentElement.classList.add("dark");
-        themeIcon.classList.remove("fa-moon");
-        themeIcon.classList.add("fa-sun");
+        if (themeIcon) {
+            themeIcon.classList.remove("fa-moon");
+            themeIcon.classList.add("fa-sun");
+        }
     } else {
         document.documentElement.classList.remove("dark");
-        themeIcon.classList.remove("fa-sun");
-        themeIcon.classList.add("fa-moon");
+        if (themeIcon) {
+            themeIcon.classList.remove("fa-sun");
+            themeIcon.classList.add("fa-moon");
+        }
     }
 }
 
@@ -98,8 +106,10 @@ let currentTheme = localStorage.getItem("theme") || "dark"; // default dark
 applyTheme(currentTheme);
 
 // Toggle button click
-themeToggle.addEventListener("click", () => {
-    currentTheme = currentTheme === "dark" ? "light" : "dark";
-    applyTheme(currentTheme);
-    localStorage.setItem("theme", currentTheme);
-});
+if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+        currentTheme = currentTheme === "dark" ? "light" : "dark";
+        applyTheme(currentTheme);
+        localStorage.setItem("theme", currentTheme);
+    });
+}
